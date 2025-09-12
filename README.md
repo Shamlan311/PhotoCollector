@@ -47,3 +47,5 @@ Unauthorized use may violate local laws and regulations.
 ---
 
 > 💡 Tip: Try experimenting with the script to learn how batch scripting interacts with files and directories. You can even modify it to add your own custom filters or formats!
+
+---
