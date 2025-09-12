@@ -16,7 +16,7 @@ It supports a **huge range of image formats** and handles **duplicates automatic
 ---
 
 ## 🖼️ Supported Image Formats
-png, jpg, jpeg, gif, bmp, heic, webp, tiff, raw, cr2, nef, arw, dng, tga, psd, ico, svg, ai, aps, art, cdr, cmx, cut, cpt, dwg, dxf, emf, eps, fax, fpx, hdr, icns, ilbm, j2c, j2k, jpf, jpx, jpm, jp2, mj2, mng, pbm, pcx, pgm, pict, pictor, pcd, ppm, rle, sgi, sff, sun, vtf, xcf, xbm, xpm, xwd, wmf, dib, exr, fli, flc, jbg, jng, miff, palm, pic, pxl, ras, rpx, sct, tfx, vda, vicar 
+JPEG, JPG, PNG, GIF, BMP, TIFF, TIF, WebP, SVG, ICO, HEIC, HEIF, AVIF, MP4, AVI, MOV, MPEG, MPG, WMV, WebM, PDF, TXT, TTF, 3GP, 3G2, 8BPS, AAI, AI, ANI, ANIM, APNG, ART, ARW, AVS, BAYER, BGR, BPM, CALS, CAP, CIN, CMT, CR2, CR3, CRW, CUR, CUT, DDS, DIB, DICOM, DJVU, DNG, DPX, DRF, EMF, EPID, EPS, ERF, EXR, FAX, FITS, FLV, FPX, GPLT, GRAY, HDR, HRZ, ICON, IFF, ILBM, IMG, INDD, IPL, JBG, JBIG, JNG, JP2, JPC, JPE, JPX, K25, KDC, M4V, MAT, MEF, MIFF, MNG, MOD, MRW, MSL, MTV, MVG, NEF, NRW, OGV, ORF, OTB, P7, PAL, PAM, PBM, PCD, PCDS, PCL, PCT, PCX, PDB, PEF, PES, PFA, PFB, PFM, PGM, PICON, PICT, PIX, PJPEG, PLASMA, PNG8, PNG24, PNG32, PNM, PPM, PS, PSB, PSD, PTX, PWP, QTI, QTIF, RAF, RAS, RGB, RGBA, RGF, RLA, RLE, RMF, RW2, RWL, SCT, SFW, SGI, SHTML, SIX, SIXEL, SMS, SR2, SRF, SRW, SUN, SVGZ, TGA, TIM, TOD, UBRL, UIL, UYVY, VDA, VICAR, VID, VIFF, VOB, VST, WBMP, WMF, WPG, X3F, XBM, XCF, XWD, YCbCr, YUV
 
 ---
 
