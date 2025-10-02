@@ -10,7 +10,7 @@ set "duplicate_count=0"
 set "error_count=0"
 set "total_size=0"
 set "scan_count=0"
-set "supported_extensions=JPEG JPG PNG GIF TIFF TIF BMP PSD WEBP HEIC HEIF APNG ICO PDF SVG RAW CR2 NEF ARW ORF DNG PPM PGM PBM PNM EXR JPEG2000 JP2 JFIF JPEG XR JPEG XL AVIF HEIF BPG JNG MPO TGA CUR EMF WMF EPS AI PTX PSD PDD PSP XCF XPM XBM TIFF64 CIN DPX HDR IIQ MRW NRW SR2 SRF SRW PEF MEF KDC MOS RWL RAF DCR DCX RIX SCT SGI SUN RAS FLI FLC VDA VST PAM PCD PGM QTI QTIF LBM FAX FAXG BPG PGF ZIF"
+set "supported_extensions=JPEG JPG PNG GIF BMP TIFF TIF WebP SVG ICO HEIC HEIF AVIF MP4 AVI MOV MPEG MPG WMV WebM PDF TTF 3GP 3G2 8BPS AAI AI ANI ANIM APNG ART ARW AVS BAYER BGR BPM CALS CAP CIN CMT CR2 CR3 CRW CUR CUT DDS DIB DICOM DJVU DNG DPX DRF EMF EPID EPS ERF EXR FAX FITS FLV FPX GPLT GRAY HDR HRZ ICON IFF ILBM IMG INDD IPL JBG JBIG JNG JP2 JPC JPE JPX K25 KDC M4V MAT MEF MIFF MNG MOD MRW MSL MTV MVG NEF NRW OGV ORF OTB P7 PAL PAM PBM PCD PCDS PCL PCT PCX PDB PEF PES PFA PFB PFM PGM PICON PICT PIX PJPEG PLASMA PNG8 PNG24 PNG32 PNM PPM PS PSB PSD PTX PWP QTI QTIF RAF RAS RGB RGBA RGF RLA RLE RMF RW2 RWL SCT SFW SGI SHTML SIX SIXEL SMS SR2 SRF SRW SUN SVGZ TGA TIM TOD UBRL UIL UYVY VDA VICAR VID VIFF VOB VST WBMP WMF WPG X3F XBM XCF XWD YCbCr YUV"
 set "excluded_folders=Windows Program Files ProgramData System Volume Information Recycler Recycled \$Recycle.Bin AppData temp tmp cache"
 set "log_file=%temp%\photo_collector_errors.log"
 
@@ -26,13 +26,14 @@ echo │██║ ╚═╝ ██║██║  ██║██║██║ ╚�
 echo │╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝    ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ │
 echo └──────────────────────────────────────────────────────────────────────────┘
 echo ┌──────────────────────────────────────────────────────────────────────────┐
-echo │1. Collect ALL photos from ALL accessible drives (TURBO MODE)             │
+echo │1. Collect ALL photos/videos from ALL accessible drives (TURBO MODE)      │
 echo │2. Collect photos from Pictures folder only                               │
-echo │3. Collect photos by file size filter                                     │
-echo │4. Change destination folder                                              │
-echo │5. View collection statistics                                             │
-echo │6. View error log                                                         │
-echo │7. Exit                                                                   │
+echo │3. Collect videos from Videos folder only                                 │
+echo │4. Collect photos by file size filter                                     │
+echo │5. Change destination folder                                              │
+echo │6. View collection statistics                                             │
+echo │7. View error log                                                         │
+echo │8. Exit                                                                   │
 echo └──────────────────────────────────────────────────────────────────────────┘
 echo Current destination: %destination%
 echo.
@@ -40,11 +41,12 @@ set /p "choice=Enter your choice [1-7]: "
 
 if "%choice%"=="1" goto CollectAllPhotos
 if "%choice%"=="2" goto CollectPicturesOnly
-if "%choice%"=="3" goto CollectBySize
-if "%choice%"=="4" goto ChangeDestination
-if "%choice%"=="5" goto ShowStats
-if "%choice%"=="6" goto ShowErrorLog
-if "%choice%"=="7" exit
+if "%choice%"=="3" goto CollectVideosOnly
+if "%choice%"=="4" goto CollectBySize
+if "%choice%"=="5" goto ChangeDestination
+if "%choice%"=="6" goto ShowStats
+if "%choice%"=="7" goto ShowErrorLog
+if "%choice%"=="8" exit
 echo Invalid choice. Press any key to try again...
 pause >nul
 goto MainMenu
@@ -265,6 +267,40 @@ if exist "%temp%\pictures_list.txt" (
         call :ProcessFile "%%F"
     )
     del "%temp%\pictures_list.txt" 2>nul
+)
+
+goto ShowResults
+
+:CollectVideosOnly
+echo.
+echo ┌─── VIDEOS FOLDER COLLECTION ───┐
+
+if not exist "%USERPROFILE%\Videos" (
+    echo Error: Videos folder not found.
+    pause
+    goto MainMenu
+)
+
+call :CreateDestination
+del "%log_file%" 2>nul
+
+set "file_count=0"
+set "duplicate_count=0"
+set "scan_count=0"
+
+echo Using PowerShell acceleration for Videos folder...
+powershell -Command "& {$extensions = @('%supported_extensions: =','%'.Split(',') | ForEach-Object {if($_){'*.' + $_}}); Get-ChildItem -Path '%USERPROFILE%\Videos' -Recurse -File -ErrorAction SilentlyContinue | Where-Object {$_.Extension.TrimStart('.') -in @('%supported_extensions: =','%'.Split(','))} | Select-Object -ExpandProperty FullName}" > "%temp%\pictures_list.txt" 2>nul
+
+if exist "%temp%\videos_list.txt" (
+    for /f "usebackq delims=" %%F in ("%temp%\videos_list.txt") do (
+        set /a scan_count+=1
+        if !scan_count! geq 25 (
+            set "scan_count=0"
+            title Photo Collector - Videos: !file_count! files processed
+        )
+        call :ProcessFile "%%F"
+    )
+    del "%temp%\videos_list.txt" 2>nul
 )
 
 goto ShowResults
