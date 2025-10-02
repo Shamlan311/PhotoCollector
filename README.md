@@ -21,7 +21,7 @@ JPEG, JPG, PNG, GIF, BMP, TIFF, TIF, WebP, SVG, ICO, HEIC, HEIF, AVIF, MP4, AVI,
 ---
 
 ## 🚀 Usage
-1. Clone or download this repository.  
+1. Download this repository.  
 2. Run `PhotoCollector.bat`.  
 3. Follow the on-screen menu to select options:  
    - Collect all photos from all drives.  
