@@ -5,6 +5,12 @@ It supports a **huge range of image formats** and handles **duplicates automatic
 
 ---
 
+> ⚠️ **WARNING:** The author is **not responsible** for any misuse of this script.  
+> Use this tool **only on systems and files you own** or have explicit permission to access.  
+> Unauthorized use may violate local laws and regulations. 
+
+---
+
 ## ⚡ Features
 - Scan **all drives** or **specific folders** for image files.  
 - Consolidate images into a single **destination folder**.  
@@ -29,13 +35,6 @@ JPEG, JPG, PNG, GIF, BMP, TIFF, TIF, WebP, SVG, ICO, HEIC, HEIF, AVIF, MP4, AVI,
    - Collect photos by file size.  
 4. Set the **destination folder** for consolidated images.  
 5. View **statistics** and **error logs** after scanning.  
-
----
-
-## ⚠️ Disclaimer
-The author is **not responsible** for any misuse of this script.  
-Use this tool **only on systems and files you own** or have explicit permission to access.  
-Unauthorized use may violate local laws and regulations.  
 
 ---
 
