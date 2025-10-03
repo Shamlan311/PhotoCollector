@@ -4,7 +4,7 @@ chcp 65001 >nul
 title Photo Collector - Shamlan
 color 0F
 
-set "destination=F:\Collected Photos"
+set "destination=C:\Users\%USERNAME%\OneDrive\Pictures"
 set "file_count=0"
 set "duplicate_count=0"
 set "error_count=0"
@@ -405,3 +405,4 @@ exit /b
 :LogError
 echo [%date% %time%] ERROR: %~1 - %~2 >> "%log_file%"
 exit /b
+
